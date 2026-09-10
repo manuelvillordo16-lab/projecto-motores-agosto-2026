@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float standingHeight = 2f;
     [SerializeField] private float crouchingHeight = 1.2f;
     [SerializeField] private float heightChangeSpeed = 10f;
-
+    [SerializeField] private Transform visualTransform;
     // Input
     private Vector2 moveInput;
     private bool jumpPressed;
@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 finalMove = move * targetSpeed + Vector3.up * velocity.y;
         controller.Move(finalMove * Time.deltaTime);
 
-        // 5. Rotación del personaje
+        // Character Rotation
         if (move.sqrMagnitude > 0.01f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move);
@@ -116,17 +116,29 @@ public class PlayerMovement : MonoBehaviour
     private void HandleCrouch()
     {
         float targetHeight = isCrouching ? crouchingHeight : standingHeight;
-        if (Mathf.Abs(controller.height - targetHeight) > 0.01f)
+        float targetScaleY = isCrouching ? (crouchingHeight / standingHeight) : 1f;
+
+        // Character Controller height changes
+        controller.height = Mathf.Lerp(controller.height, targetHeight, heightChangeSpeed * Time.deltaTime);
+
+        // Adjust center of model
+        Vector3 center = controller.center;
+        center.y = controller.height * 0.5f;
+        controller.center = center;
+
+        // 3. Compress Mesh Visual and model "glued" to the floor
+        if (visualTransform != null)
         {
-            float heightDifference = targetHeight - controller.height;
-            controller.height = Mathf.Lerp(controller.height, targetHeight, heightChangeSpeed * Time.deltaTime);
-            Vector3 center = controller.center;
-            center.y = controller.height / 2f;
-            controller.center = center;
-            if (controller.isGrounded)
-            {
-                transform.position += new Vector3(0, heightDifference * 0.5f * Time.deltaTime * heightChangeSpeed, 0);
-            }
+            // Scale
+            Vector3 scale = visualTransform.localScale;
+            scale.y = Mathf.Lerp(scale.y, targetScaleY, heightChangeSpeed * Time.deltaTime);
+            visualTransform.localScale = scale;
+
+            // Posotion: Compensates for feet not to float above floor
+                   
+            Vector3 pos = visualTransform.localPosition;
+            pos.y = Mathf.Lerp(pos.y, scale.y, heightChangeSpeed * Time.deltaTime);
+            visualTransform.localPosition = pos;
         }
     }
 }

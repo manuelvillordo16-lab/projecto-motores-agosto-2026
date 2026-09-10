@@ -861,6 +861,7 @@ MonoBehaviour:
   standingHeight: 2
   crouchingHeight: 1.2
   heightChangeSpeed: 10
+  visualTransform: {fileID: 1223486436}
 --- !u!114 &1249104218
 MonoBehaviour:
   m_ObjectHideFlags: 0

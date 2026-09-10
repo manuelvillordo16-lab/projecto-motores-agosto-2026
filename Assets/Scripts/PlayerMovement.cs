@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         HandleMovement();
-        HandleJumpAndGravity();
         HandleCrouch();
     }
 
@@ -67,65 +66,67 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnCrouch(InputAction.CallbackContext context)
     {
-        if (context.performed)
-            isCrouching = !isCrouching;
+        isCrouching = context.ReadValueAsButton();
     }
 
     //Movement
 
     private void HandleMovement()
     {
-
+        // Camera relative movement
         Vector3 camForward = Camera.main.transform.forward;
         Vector3 camRight = Camera.main.transform.right;
-        camForward.y = 0;
-        camRight.y = 0;
+        camForward.y = 0f;
+        camRight.y = 0f;
         camForward.Normalize();
         camRight.Normalize();
 
         Vector3 move = camRight * moveInput.x + camForward * moveInput.y;
         move = Vector3.ClampMagnitude(move, 1f);
 
+        // Speed according to state
         float targetSpeed = walkSpeed;
-        if (isCrouching)
-            targetSpeed = crouchSpeed;
-        else if (isSprinting)
-            targetSpeed = sprintSpeed;
+        if (isCrouching) targetSpeed = crouchSpeed;
+        else if (isSprinting) targetSpeed = sprintSpeed;
 
-        controller.Move(move * targetSpeed * Time.deltaTime);
+        // Jump and Gravity
+        if (controller.isGrounded && velocity.y < 0f)
+            velocity.y = -2f;
 
-        // Character sees where cursor points at
-        if (move != Vector3.zero)
+        if (jumpPressed && controller.isGrounded && !isCrouching)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+        jumpPressed = false; // Always resets
+
+        velocity.y += gravity * Time.deltaTime;
+
+        // Horizontal and Vertical Movement
+        Vector3 finalMove = move * targetSpeed + Vector3.up * velocity.y;
+        controller.Move(finalMove * Time.deltaTime);
+
+        // 5. Rotación del personaje
+        if (move.sqrMagnitude > 0.01f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(move);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
         }
     }
 
-    private void HandleJumpAndGravity()
-    {
-        if (controller.isGrounded && velocity.y < 0)
-            velocity.y = -2f;   // Keeps player on the ground
-
-        if (jumpPressed && controller.isGrounded && !isCrouching)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            jumpPressed = false;
-        }
-
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-    }
-
     private void HandleCrouch()
     {
         float targetHeight = isCrouching ? crouchingHeight : standingHeight;
-        currentHeight = Mathf.Lerp(currentHeight, targetHeight, heightChangeSpeed * Time.deltaTime);
-        controller.height = currentHeight;
-
-        // Center Adjustment
-        Vector3 center = controller.center;
-        center.y = currentHeight / 2f;
-        controller.center = center;
+        if (Mathf.Abs(controller.height - targetHeight) > 0.01f)
+        {
+            float heightDifference = targetHeight - controller.height;
+            controller.height = Mathf.Lerp(controller.height, targetHeight, heightChangeSpeed * Time.deltaTime);
+            Vector3 center = controller.center;
+            center.y = controller.height / 2f;
+            controller.center = center;
+            if (controller.isGrounded)
+            {
+                transform.position += new Vector3(0, heightDifference * 0.5f * Time.deltaTime * heightChangeSpeed, 0);
+            }
+        }
     }
 }

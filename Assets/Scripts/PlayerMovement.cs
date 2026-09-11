@@ -21,6 +21,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float crouchingHeight = 1.2f;
     [SerializeField] private float heightChangeSpeed = 10f;
     [SerializeField] private Transform visualTransform;
+
+    [Header("Interacción")]
+    [SerializeField] private float interactDistance = 3f;
+    [SerializeField] private LayerMask interactableLayer;
     // Input
     private Vector2 moveInput;
     private bool jumpPressed;

@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Interacción")]
     [SerializeField] private float interactDistance = 3f;
     [SerializeField] private LayerMask interactableLayer;
+
     // Input
     private Vector2 moveInput;
     private bool jumpPressed;
@@ -130,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         center.y = controller.height * 0.5f;
         controller.center = center;
 
-        // 3. Compress Mesh Visual and model "glued" to the floor
+        // Compress Mesh Visual and model "glued" to the floor
         if (visualTransform != null)
         {
             // Scale
@@ -143,6 +144,22 @@ public class PlayerMovement : MonoBehaviour
             Vector3 pos = visualTransform.localPosition;
             pos.y = Mathf.Lerp(pos.y, scale.y, heightChangeSpeed * Time.deltaTime);
             visualTransform.localPosition = pos;
+        }
+    }
+    private void TryInteract()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward); // Raycast with camera
+        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactableLayer))
+        {
+            //Interacting
+            Debug.Log("Interactuando con: " + hit.collider.name);
+
+            // Interacts with GameObject that has Interactable layer
+            var interactable = hit.collider.GetComponent<Interactable>();
+            if (interactable != null)
+            {
+                interactable.Interact();
+            }
         }
     }
 }

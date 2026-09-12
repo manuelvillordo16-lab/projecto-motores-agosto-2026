@@ -26,6 +26,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float interactDistance = 3f;
     [SerializeField] private LayerMask interactableLayer;
 
+    [Header("Cámara")]
+    [SerializeField] private Transform lookTarget; //LookTarget Object
+    [SerializeField] private float lookSensitivity = 2f;
+    [SerializeField] private float minVerticalAngle = -40f;
+    [SerializeField] private float maxVerticalAngle = 80f;
+
+    private float currentYaw;
+    private float currentPitch;
+
     // Input
     private Vector2 moveInput;
     private bool jumpPressed;
@@ -43,6 +52,9 @@ public class PlayerMovement : MonoBehaviour
 
         currentHeight = standingHeight;
         controller.height = standingHeight;
+
+        if (lookTarget == null)
+            lookTarget = transform.Find("LookTarget");
     }
 
     private void Update()
@@ -111,11 +123,11 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(finalMove * Time.deltaTime);
 
         // Character Rotation
-        if (move.sqrMagnitude > 0.01f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(move);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
-        }
+       // if (move.sqrMagnitude > 0.01f)
+      //  {
+       //     Quaternion targetRotation = Quaternion.LookRotation(move);
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+       // }//
     }
 
     private void HandleCrouch()
@@ -167,6 +179,18 @@ public class PlayerMovement : MonoBehaviour
             {
                 interactable.Interact();
             }
+        }
+    }
+        public void OnLook(InputAction.CallbackContext context)
+    {
+        Vector2 lookInput = context.ReadValue<Vector2>();
+
+        currentYaw += lookInput.x * lookSensitivity;
+        currentPitch -= lookInput.y * lookSensitivity;
+        currentPitch = Mathf.Clamp(currentPitch, minVerticalAngle, maxVerticalAngle);
+        if (lookTarget != null)
+        {
+            lookTarget.rotation = Quaternion.Euler(currentPitch, currentYaw, 0f);
         }
     }
 }

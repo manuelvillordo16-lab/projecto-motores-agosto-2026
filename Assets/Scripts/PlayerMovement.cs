@@ -139,11 +139,18 @@ public class PlayerMovement : MonoBehaviour
             scale.y = Mathf.Lerp(scale.y, targetScaleY, heightChangeSpeed * Time.deltaTime);
             visualTransform.localScale = scale;
 
-            // Posotion: Compensates for feet not to float above floor
+            // Position: Compensates for feet not to float above floor
                    
             Vector3 pos = visualTransform.localPosition;
             pos.y = Mathf.Lerp(pos.y, scale.y, heightChangeSpeed * Time.deltaTime);
             visualTransform.localPosition = pos;
+        }
+    }
+    public void OnInteract(InputAction.CallbackContext context) //Mandatory for interactions
+    {
+        if (context.performed)
+        {
+            TryInteract();
         }
     }
     private void TryInteract()

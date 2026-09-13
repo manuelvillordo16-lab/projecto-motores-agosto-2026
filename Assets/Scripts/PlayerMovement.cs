@@ -121,13 +121,6 @@ public class PlayerMovement : MonoBehaviour
         // Horizontal and Vertical Movement
         Vector3 finalMove = move * targetSpeed + Vector3.up * velocity.y;
         controller.Move(finalMove * Time.deltaTime);
-
-        // Character Rotation
-       // if (move.sqrMagnitude > 0.01f)
-      //  {
-       //     Quaternion targetRotation = Quaternion.LookRotation(move);
-        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
-       // }//
     }
 
     private void HandleCrouch()
@@ -184,7 +177,6 @@ public class PlayerMovement : MonoBehaviour
         public void OnLook(InputAction.CallbackContext context)
     {
         Vector2 lookInput = context.ReadValue<Vector2>();
-
         currentYaw += lookInput.x * lookSensitivity;
         currentPitch -= lookInput.y * lookSensitivity;
         currentPitch = Mathf.Clamp(currentPitch, minVerticalAngle, maxVerticalAngle);

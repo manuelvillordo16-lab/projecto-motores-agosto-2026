@@ -27,10 +27,10 @@ public class EnemyAI : MonoBehaviour
     public float attackCooldown = 2f;
 
     [Header("Detection Settings")]
-    public float chaseDistance = 8f;
-    public float viewDistance = 10f;
+    public float chaseDistance = 15f;
+    public float viewDistance = 20f;
     [Range(0, 360)]
-    public float viewAngle = 90f;
+    public float viewAngle = 120f;
     public LayerMask obstacleMask;
 
 

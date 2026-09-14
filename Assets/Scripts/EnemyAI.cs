@@ -30,13 +30,13 @@ public class EnemyAI : MonoBehaviour
     public LayerMask obstacleMask;
 
 
-    private NavMeshAgent agent;
+    private UnityEngine.AI.NavMeshAgent agent;
     private float attackTimer = 0f;
 
     void Start()
     {
 
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         agent.speed = patrolSpeed;
     }
@@ -171,8 +171,8 @@ public class EnemyAI : MonoBehaviour
         Vector3 randomDirection = Random.insideUnitSphere * randomPatrolRadius;
         randomDirection += transform.position;
 
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, randomPatrolRadius, NavMesh.AllAreas))
+        UnityEngine.AI.NavMeshHit hit;
+        if (UnityEngine.AI.NavMesh.SamplePosition(randomDirection, out hit, randomPatrolRadius, UnityEngine.AI.NavMesh.AllAreas))
         {
             return hit.position;
         }

@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
-
-
 public class EnemyAI : MonoBehaviour
 {
     public enum State { Patrol, Chase, Attack }
@@ -27,20 +23,20 @@ public class EnemyAI : MonoBehaviour
     public float attackCooldown = 2f;
 
     [Header("Detection Settings")]
-    public float chaseDistance = 15f;
-    public float viewDistance = 20f;
+    public float chaseDistance = 40f;
+    public float viewDistance = 50f;
     [Range(0, 360)]
     public float viewAngle = 120f;
     public LayerMask obstacleMask;
 
 
-    private NavMeshAgent agent;
+    private UnityEngine.AI.NavMeshAgent agent;
     private float attackTimer = 0f;
 
     void Start()
     {
 
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         agent.speed = patrolSpeed;
     }
@@ -175,15 +171,18 @@ public class EnemyAI : MonoBehaviour
         Vector3 randomDirection = Random.insideUnitSphere * randomPatrolRadius;
         randomDirection += transform.position;
 
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, randomPatrolRadius, NavMesh.AllAreas))
+        UnityEngine.AI.NavMeshHit hit;
+        if (UnityEngine.AI.NavMesh.SamplePosition(randomDirection, out hit, randomPatrolRadius, UnityEngine.AI.NavMesh.AllAreas))
         {
             return hit.position;
         }
 
         return transform.position;
     }
-
-
+    // RANGE
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, chaseDistance);
+    }
 }
-

@@ -255,7 +255,7 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, chaseDistance);
     }
 
-    public void Stun(float duration)
+    public void Stun(float duration)    
     {
         StartCoroutine(StunCoroutine(duration));
     }

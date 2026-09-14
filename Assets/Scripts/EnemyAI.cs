@@ -33,16 +33,38 @@ public class EnemyAI : MonoBehaviour
     private UnityEngine.AI.NavMeshAgent agent;
     private float attackTimer = 0f;
 
+    void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+            }
+            else
+            {
+                Debug.LogError("¡No se encontró ningún objeto con la etiqueta 'Player' en la escena!");
+            }
+        }
+    }
+
+
     void Start()
     {
 
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
 
         agent.speed = patrolSpeed;
+
     }
 
     void Update()
     {
+        if (player == null) return;
+
         switch (currentState)
         {
             case State.Patrol:
@@ -73,8 +95,33 @@ public class EnemyAI : MonoBehaviour
         }
 
         if (ShouldStartChasing())
+        {
+            float dist = Vector3.Distance(transform.position, player.position);
+
+
+            if (dist <= attackDistance)
+            {
+                currentState = State.Attack;
+            }
+            else
+            {
+                currentState = State.Chase;
+            }
+
+
+            if (ShouldStartChasing())
+
+                if (spawner != null)
+                {
+                    spawner.SpawnThreeEnemies();
+                }
+
             currentState = State.Chase;
+        }
+
+
     }
+
 
     //CHASE 
     void Chase()
@@ -121,8 +168,26 @@ public class EnemyAI : MonoBehaviour
         if (attackTimer <= 0f)
         {
             Debug.Log("Enemy attacked the player!");
+
+
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+
+            if (playerHealth != null)
+            {
+
+                playerHealth.TakeDamage(10f);
+
+            }
+            else
+            {
+
+                Debug.LogError("¡The object assigned to the 'player' variable in EnemyAI does not have the PlayerHealth script!");
+
+            }
+
             attackTimer = attackCooldown;
         }
+
     }
 
     //DETECTION 
@@ -171,14 +236,15 @@ public class EnemyAI : MonoBehaviour
         Vector3 randomDirection = Random.insideUnitSphere * randomPatrolRadius;
         randomDirection += transform.position;
 
-        UnityEngine.AI.NavMeshHit hit;
-        if (UnityEngine.AI.NavMesh.SamplePosition(randomDirection, out hit, randomPatrolRadius, UnityEngine.AI.NavMesh.AllAreas))
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomDirection, out hit, randomPatrolRadius, NavMesh.AllAreas))
         {
             return hit.position;
         }
 
         return transform.position;
     }
+
     // RANGE
     private void OnDrawGizmosSelected()
     {

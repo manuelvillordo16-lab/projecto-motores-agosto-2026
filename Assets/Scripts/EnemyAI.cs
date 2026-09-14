@@ -27,8 +27,8 @@ public class EnemyAI : MonoBehaviour
     public float attackCooldown = 2f;
 
     [Header("Detection Settings")]
-    public float chaseDistance = 15f;
-    public float viewDistance = 20f;
+    public float chaseDistance = 30f;
+    public float viewDistance = 35f;
     [Range(0, 360)]
     public float viewAngle = 120f;
     public LayerMask obstacleMask;
@@ -183,7 +183,11 @@ public class EnemyAI : MonoBehaviour
 
         return transform.position;
     }
-
-
+     // RANGE
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, chaseDistance);
+    }
 }
 

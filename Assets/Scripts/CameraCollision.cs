@@ -4,7 +4,7 @@ using Unity.Cinemachine;
 public class CameraCollision : MonoBehaviour
 {
     [Header("References")]
-    public Transform target;                          // LookTarget
+    public Transform target;                          
     public CinemachineThirdPersonFollow thirdPersonFollow;
 
     [Header("Collision")]

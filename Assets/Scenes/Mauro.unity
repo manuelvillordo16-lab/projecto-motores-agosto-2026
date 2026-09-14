@@ -13855,6 +13855,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2024347431399268181, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
+      propertyPath: Lookahead.Time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024347431399268181, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
+      propertyPath: CenterOnActivate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024347431399268181, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
+      propertyPath: Lookahead.Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024347431399268181, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
+      propertyPath: Lookahead.Smoothing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024347431399268181, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
+      propertyPath: Composition.DeadZone.Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2024347431399268181, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
+      propertyPath: Composition.HardLimits.Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3110534184349045908, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
+      propertyPath: AvoidObstacles.MaximumEffort
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3110534184349045908, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
       propertyPath: AvoidObstacles.UseFollowTarget.Enabled
       value: 0

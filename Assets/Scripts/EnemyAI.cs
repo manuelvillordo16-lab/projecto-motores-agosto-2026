@@ -8,6 +8,8 @@ public class EnemyAI : MonoBehaviour
     public enum PatrolMode { Waypoints, RandomNavMesh }
     public PatrolMode patrolMode = PatrolMode.RandomNavMesh;
 
+    public Spawner spawner;
+
     [Header("Patrol Mode")]
     public float randomPatrolRadius = 30f;
 

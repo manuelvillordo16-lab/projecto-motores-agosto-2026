@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 public class EnemyAI : MonoBehaviour
 {
     public enum State { Patrol, Chase, Attack }
@@ -252,5 +253,19 @@ public class EnemyAI : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, chaseDistance);
+    }
+
+    public void Stun(float duration)
+    {
+        StartCoroutine(StunCoroutine(duration));
+    }
+
+    private IEnumerator StunCoroutine(float duration)
+    {
+        State previousState = currentState;
+        agent.isStopped = true;
+        yield return new WaitForSeconds(duration);
+        agent.isStopped = false;
+        currentState= previousState;
     }
 }

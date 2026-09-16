@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 172342127}
   m_Layer: 0
-  m_Name: Door
+  m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,13 +144,12 @@ Transform:
   m_GameObject: {fileID: 172342126}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.437, y: 1.34, z: 1.8}
+  m_LocalPosition: {x: 2.437, y: 0.39, z: 1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 312291697}
   - {fileID: 1138066830}
-  - {fileID: 185801495}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &176125333 stripped
@@ -158,37 +157,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8517088636238000560, guid: 1881698dfaae36c4aa184780655e9de8, type: 3}
   m_PrefabInstance: {fileID: 8093139682051404993}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &185801494
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 185801495}
-  m_Layer: 0
-  m_Name: startingpoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &185801495
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 185801494}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 172342127}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &209407528
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,11 +328,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &312291695
 MeshRenderer:
@@ -433,7 +401,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8578, y: 2.558841, z: 0.4819}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 172342127}
@@ -450,11 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aea2ca6192f69e4882f1e98b1503b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 2
+  speed: 0
   startingpoint: 0
-  startpoint:
-  - {fileID: 185801495}
-  endpoint:
+  points:
   - {fileID: 1138066830}
 --- !u!1001 &352750044
 PrefabInstance:
@@ -470,7 +436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9094066994092654881, guid: 8f6c8d986681b4747846a3084b099b3f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.01
+      value: -0.5131796
       objectReference: {fileID: 0}
     - target: {fileID: 9094066994092654881, guid: 8f6c8d986681b4747846a3084b099b3f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -478,23 +444,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9094066994092654881, guid: 8f6c8d986681b4747846a3084b099b3f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.84
+      value: 4.74196
       objectReference: {fileID: 0}
     - target: {fileID: 9094066994092654881, guid: 8f6c8d986681b4747846a3084b099b3f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7209384
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9094066994092654881, guid: 8f6c8d986681b4747846a3084b099b3f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9094066994092654881, guid: 8f6c8d986681b4747846a3084b099b3f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.69299924
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9094066994092654881, guid: 8f6c8d986681b4747846a3084b099b3f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9094066994092654881, guid: 8f6c8d986681b4747846a3084b099b3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -502,7 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9094066994092654881, guid: 8f6c8d986681b4747846a3084b099b3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 87.736
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9094066994092654881, guid: 8f6c8d986681b4747846a3084b099b3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -650,7 +616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1138066830}
   m_Layer: 0
-  m_Name: endpoint
+  m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -665,7 +631,7 @@ Transform:
   m_GameObject: {fileID: 1138066829}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.69, z: 0}
+  m_LocalPosition: {x: 0, y: 1.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -958,15 +924,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299010800}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.69299924, z: -0, w: 0.7209384}
-  m_LocalPosition: {x: 2.01, y: 0.951, z: 4.84}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5131796, y: 0.951, z: 4.74196}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1483276513}
   - {fileID: 209407529}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 87.736, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1299010805
 CapsuleCollider:
   m_ObjectHideFlags: 0

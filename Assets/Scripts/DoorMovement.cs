@@ -28,4 +28,9 @@ public class DoorMovement : MonoBehaviour
     {
         key = true;
     }
+
+    public void OpenDoor()
+    {
+        key = true;
+    }
 }

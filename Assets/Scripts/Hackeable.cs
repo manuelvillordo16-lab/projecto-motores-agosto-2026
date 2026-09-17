@@ -8,16 +8,14 @@ public class Hackeable : MonoBehaviour
     private Color originalColor;
     private EnemyAI enemyAI;
 
-    private DoorMovement doorMovement;
+    [SerializeField] private DoorMovement doorMovement;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-      objectRenderer = GetComponent<Renderer>();  
+        objectRenderer = GetComponent<Renderer>();  
         originalColor = objectRenderer.material.color;
-
         enemyAI= GetComponent<EnemyAI>();
-        doorMovement = GetComponent<DoorMovement>();
     }
 
    public void Hack()
@@ -45,5 +43,11 @@ public class Hackeable : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         objectRenderer.material.color = originalColor;
+
+        if (doorMovement != null)
+        {
+            Debug.Log("Hack terminado. Cerrando puerta. ");
+            doorMovement.CloseDoor();
+        }
     }
 }

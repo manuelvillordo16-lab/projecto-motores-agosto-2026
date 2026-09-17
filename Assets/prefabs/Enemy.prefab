@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.011731775, y: 0.16315049, z: -0.010281132, w: 0.9864779}
   m_LocalPosition: {x: 12, y: 40.1, z: 203.1}
-  m_LocalScale: {x: 5, y: 8.923992, z: 5.974286}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   currentState: 0
   patrolMode: 1
+  spawner: {fileID: 0}
   randomPatrolRadius: 30
   player: {fileID: 0}
   patrolSpeed: 20

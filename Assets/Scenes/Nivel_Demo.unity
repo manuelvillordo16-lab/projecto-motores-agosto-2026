@@ -125667,6 +125667,7 @@ GameObject:
   - component: {fileID: 589804680}
   - component: {fileID: 589804683}
   - component: {fileID: 589804684}
+  - component: {fileID: 589804685}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -125951,6 +125952,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hacker
   playerCamera: {fileID: 1943593725}
+--- !u!114 &589804685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589804678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab202a5e88210c541b376708bd18f681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &591321639
 GameObject:
   m_ObjectHideFlags: 0
@@ -422753,6 +422766,59 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1873213323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1873213325}
+  - component: {fileID: 1873213324}
+  m_Layer: 0
+  m_Name: victoria
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1873213324
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873213323}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1873213325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873213323}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -237.44, y: 18.9, z: 344.21625}
+  m_LocalScale: {x: 9.702011, y: 5.3309, z: 5.3309}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1875067325
 Mesh:
   m_ObjectHideFlags: 0
@@ -466682,19 +466748,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018735816966972318, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.97532237
+      value: 0.9672854
       objectReference: {fileID: 0}
     - target: {fileID: 9018735816966972318, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.06923205
+      value: -0.068663195
       objectReference: {fileID: 0}
     - target: {fileID: 9018735816966972318, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.20912406
+      value: 0.2436091
       objectReference: {fileID: 0}
     - target: {fileID: 9018735816966972318, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.014844412
+      value: 0.017292704
       objectReference: {fileID: 0}
     - target: {fileID: 9018735816966972318, guid: 430c248766fe9af4bb38ef9a29aa4515, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -466905,7 +466971,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943593721}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06923205, y: 0.20912406, z: 0.014844412, w: 0.97532237}
+  m_LocalRotation: {x: -0.068663195, y: 0.2436091, z: 0.017292704, w: 0.9672854}
   m_LocalPosition: {x: -143.76271, y: 1.3955044, z: 5.419031}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -570688,3 +570754,4 @@ SceneRoots:
   - {fileID: 2127180804}
   - {fileID: 1785571209}
   - {fileID: 1724306978}
+  - {fileID: 1873213325}

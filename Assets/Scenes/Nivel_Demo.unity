@@ -41333,6 +41333,59 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &176639393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 176639395}
+  - component: {fileID: 176639394}
+  m_Layer: 0
+  m_Name: victoria (ruta normal)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &176639394
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176639393}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &176639395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176639393}
+  serializedVersion: 2
+  m_LocalRotation: {x: -7.850463e-18, y: -0.70710677, z: -7.850463e-18, w: 0.7071068}
+  m_LocalPosition: {x: -26.324495, y: 19.349998, z: -29.740004}
+  m_LocalScale: {x: 8.976563, y: 3.823884, z: 6.843873}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 181176985}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &180198595
 Mesh:
   m_ObjectHideFlags: 0
@@ -42223,6 +42276,8 @@ Transform:
   - {fileID: 324337061}
   - {fileID: 456027827}
   - {fileID: 850168940}
+  - {fileID: 176639395}
+  - {fileID: 1873213325}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &184846639
@@ -422812,12 +422867,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873213323}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -237.44, y: 18.9, z: 344.21625}
-  m_LocalScale: {x: 9.702011, y: 5.3309, z: 5.3309}
+  m_LocalRotation: {x: -7.850463e-18, y: -0.70710677, z: -7.850463e-18, w: 0.7071068}
+  m_LocalPosition: {x: -16.75, y: 32.03, z: -1.8200054}
+  m_LocalScale: {x: 2.318486, y: 3.77593, z: 6.843873}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 181176985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1875067325
 Mesh:
@@ -570754,4 +570809,3 @@ SceneRoots:
   - {fileID: 2127180804}
   - {fileID: 1785571209}
   - {fileID: 1724306978}
-  - {fileID: 1873213325}

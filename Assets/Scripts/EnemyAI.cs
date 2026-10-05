@@ -32,7 +32,7 @@ public class EnemyAI : MonoBehaviour
     public float viewAngle = 120f;
     public LayerMask obstacleMask;
 
-
+   
     private UnityEngine.AI.NavMeshAgent agent;
     private float attackTimer = 0f;
 
@@ -62,6 +62,29 @@ public class EnemyAI : MonoBehaviour
 
         agent.speed = patrolSpeed;
 
+    }
+
+    void OnEnable()
+    {
+        SurveillanceCamera.OnAlarmRaised += HandleAlarm;
+    }
+
+
+    void OnDisable()
+    {
+        SurveillanceCamera.OnAlarmRaised -= HandleAlarm;
+    }
+
+
+    void HandleAlarm(Vector3 targetPosition)
+    {
+
+        if (currentState == State.Patrol || currentState == State.Patrol)
+        {
+            agent.SetDestination(targetPosition);
+            currentState = State.Chase;
+            Debug.Log("Enemy its on it way towards the player");
+        }
     }
 
     void Update()
@@ -267,5 +290,8 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(duration);
         agent.isStopped = false;
         currentState= previousState;
+
+
+
     }
 }

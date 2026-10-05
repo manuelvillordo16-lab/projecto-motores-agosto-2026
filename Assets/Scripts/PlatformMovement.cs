@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour
 {
-    public float speed;
-    public int startingpoint;
-    public Transform[] points;
+    [SerializeField] float speed;
+    [SerializeField] int startingpoint;
+    [SerializeField] Transform[] points;
     private int i;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+   
     void Start()
     {
         transform.position = points[startingpoint].position;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -25,14 +25,14 @@ public class PlatformMovement : MonoBehaviour
         }
         transform.position = Vector3.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        collision.transform.SetParent(transform);
+        other.transform.SetParent(transform);
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        collision.transform.SetParent(null);
+        other.transform.SetParent(null);
     }
 
 

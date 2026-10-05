@@ -8,18 +8,25 @@ public class Hackeable : MonoBehaviour
     private Color originalColor;
     private EnemyAI enemyAI;
 
+    [SerializeField] private DoorMovement doorMovement;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-      objectRenderer = GetComponent<Renderer>();  
+        objectRenderer = GetComponent<Renderer>();  
         originalColor = objectRenderer.material.color;
-
         enemyAI= GetComponent<EnemyAI>();
     }
 
    public void Hack()
     {
         Debug.Log("Hack activado en: " + gameObject.name);
+
+        if (doorMovement != null)
+        {
+            Debug.Log("Puerta Encontrada. Abriendo puerta. ");
+            doorMovement.OpenDoor();
+        }
 
         StartCoroutine(HackEffect());
 
@@ -32,12 +39,15 @@ public class Hackeable : MonoBehaviour
             Debug.Log("EnemyAI encontrado. Aplicando stun. ");
             enemyAI.Stun(3f);
         }
-        else
-        {
-            Debug.Log("Este objeto no tiene EnemyAI. ");
-        }
+       
         yield return new WaitForSeconds(3f);
 
         objectRenderer.material.color = originalColor;
+
+        if (doorMovement != null)
+        {
+            Debug.Log("Hack terminado. Cerrando puerta. ");
+            doorMovement.CloseDoor();
+        }
     }
 }

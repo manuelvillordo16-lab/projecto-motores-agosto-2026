@@ -22,10 +22,20 @@ public class DoorMovement : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, endpoint[i].position, speed * Time.deltaTime);
         }
-        
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, startpoint[startingpoint].position, speed * Time.deltaTime);
+        }
     }
-    private void OnTriggerEnter(Collider other)
+   
+
+    public void OpenDoor()
     {
         key = true;
+    }
+
+    public void CloseDoor()
+    {
+        key = false;
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 public class EnemyAI : MonoBehaviour
 {
     public enum State { Patrol, Chase, Attack }
@@ -8,7 +9,7 @@ public class EnemyAI : MonoBehaviour
     public enum PatrolMode { Waypoints, RandomNavMesh }
     public PatrolMode patrolMode = PatrolMode.RandomNavMesh;
 
-     public Spawner spawner;
+    public Spawner spawner;
 
     [Header("Patrol Mode")]
     public float randomPatrolRadius = 30f;
@@ -252,5 +253,19 @@ public class EnemyAI : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, chaseDistance);
+    }
+
+    public void Stun(float duration)    
+    {
+        StartCoroutine(StunCoroutine(duration));
+    }
+
+    private IEnumerator StunCoroutine(float duration)
+    {
+        State previousState = currentState;
+        agent.isStopped = true;
+        yield return new WaitForSeconds(duration);
+        agent.isStopped = false;
+        currentState= previousState;
     }
 }

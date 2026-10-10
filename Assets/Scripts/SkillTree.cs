@@ -18,12 +18,17 @@ public class SkillTree : MonoBehaviour
     public Image fondoMid;
     public Image fondoSenior;
 
+    public GameObject panelSkills;
+    public KeyCode teclaAbrir = KeyCode.K;
+    bool menuAbierto = false;
+
     bool juniorComprada;
     bool midComprada;
     bool seniorComprada;
     void Start()
     {
         ActualizarPantalla();
+        panelSkills.SetActive(false);
     }
 
     public void ComprarJunior()
@@ -87,7 +92,29 @@ public class SkillTree : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(teclaAbrir))
+        {
+            if (menuAbierto) CerrarMenu();
+            else AbrirMenu();
+        }
+    }
+
+    void AbrirMenu()
+    {
+        menuAbierto = true;
+        panelSkills.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
     }
 
+    void CerrarMenu()
+    {
+        menuAbierto = false;
+        panelSkills.SetActive(false);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 }
